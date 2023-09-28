@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site</title>
+    <style>
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            font-family: sans-serif;
+            -webkit-font-smoothing: antialiased;
+
+            position: relative;
+            overflow: hidden;
+
+            color: white;
+
+            display: grid;
+            place-items: center;
+
+            height: 100vh;
+            height: 100svh;
+            width: 100vw;
+
+            background: linear-gradient(45deg, rgb(100, 25, 25), rgb(25, 25, 255), rgb(255, 100, 100));
+        }
+
+        div {
+            display: block;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+
+        .screen-wrapper {
+
+            position: relative;
+
+            width: 292.5px;
+            height: 633px;
+
+            box-shadow: inset 1px 1px 4px #fff, inset -1px -1px 4px #fff;
+            background: #ffffff10;
+            backdrop-filter: blur(20px);
+
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+        }
+
+        .navbar {
+            grid-column: 1 / 9;
+            grid-row: 1 / 1;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0.5rem;
+        }
+
+        .navbar-button {
+            height: 32px;
+            width: 32px;
+            flex: 0 0 32px;
+
+            display: grid;
+            place-items: center;
+
+            background-color: #ffffff50;
+            backdrop-filter: blur(5px);
+            border: none;
+            border-radius: 50%;
+
+            user-select: none;
+        }
+
+        .balance {
+            grid-column: 1 / 9;
+            grid-row: 2 / 3;
+            padding: 0.5rem;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .balance-heading {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.5;
+        }
+
+        .balance-total {
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .card-container {
+            grid-column: 1 / 9;
+            grid-row: 3 / 5;
+
+            padding: 0.5rem;
+            user-select: none;
+        }
+
+        .card {
+            background-color: #ffffff65;
+            backdrop-filter: blur(15px);
+            height: 100%;
+            width: 100%;
+
+            padding: 1rem;
+            border-radius: 1rem;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-misc {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-number-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-number {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-info-text {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .card-type {
+            height: 12px;
+            width: 12px;
+            flex: 0 0 12px;
+            border-radius: 50%;
+            background-color: #EB001B;
+
+            position: relative;
+        }
+
+        .card-type::before {
+            content: "";
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            background-color: #F79E1B;
+
+            position: absolute;
+            
+
+            transform: translate(50%, 0%);
+        }
+
+        .card-chip-icon {
+            width: 36px;
+            height: 24px;
+            background-color: #ffffff25;
+            border-radius: 0.25rem;
+        }
+
+        .card-icon {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            transform: rotate(90deg);
+        }
+
+        .buttons-wrapper {
+            grid-column: 1 / 9;
+            grid-row: 5 / 6;
+
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            gap: 0.75rem;
+
+            overflow: hidden;
+        }
+
+        .menu-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .menu-button {
+            height: 40px;
+            width: 40px;
+            flex: 0 0 40px;
+
+            display: grid;
+            place-items: center;
+
+            background-color: #ffffff50;
+            backdrop-filter: blur(5px);
+            border: none;
+            border-radius: 50%;
+
+            user-select: none;
+        }
+
+        .menu-button-text {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .transactions {
+            grid-column: 1 / 9;
+            grid-row: 6 / 9;
+
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+            gap: 0.5rem;
+
+            overflow: hidden;
+        }
+
+        .transactions-heading {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.5;
+        }
+
+        .transaction-box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .transaction-box {
+            padding: 0.5rem;
+            background-color: #ffffff50;
+            backdrop-filter: blur(20px);
+            border-radius: 0.5rem;
+
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .transaction-box-icon {
+            height: 32px;
+            width: 32px;
+            flex: 0 0 32px;
+            background-color: #ffffff20;
+            border-radius: 50%;
+        }
+        
+        .transaction-box-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .transaction-box-info {
+            color: transparent;
+            background-color: #ffffff20;
+            border-radius: 0.5rem;
+            width: fit-content;
+            user-select: none;
+            height: 12px;
+        }
+
+
+    </style>
+</head>
+    <body>
+        <div class="screen-wrapper">
+            <nav class="navbar">
+                <button class="navbar-button">
+                    <img src="menu.svg" style="width: 24px; height: 24px;"/>
+                </button>
+                <button class="navbar-button">
+                    <img src="wallet.svg" style="width: 24px; height: 24px;"/>
+                </button>
+            </nav>
+            <div class="balance">
+                <h1 class="balance-heading">Total Balance</h1>
+                <span class="balance-total">$78,387.12</span>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-misc">
+                        <div class="card-chip-icon"></div>
+                        <div class="card-icon">
+                            <img src="wireless.svg" />
+                        </div>
+                    </div>
+                    <div class="card-number-container">
+                        <span class="card-number">0000</span>
+                        <span class="card-number">1111</span>
+                        <span class="card-number">2222</span>
+                        <span class="card-number">3333</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-info-text">John Smith</div>
+                        <div class="card-info-text">10/27</div>
+                        <div class="card-type"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-wrapper">
+                <div class="menu-button-container">
+                    <button class="menu-button">
+                        <img src="plus.svg" style="width: 24px; height: 24px;"/>
+                    </button>
+                    <span class="menu-button-text">Add</span>
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button">
+                        <img src="arrow_down.svg" style="width: 24px; height: 24px; transform: rotate(-135deg);"/>
+                    </button>
+                    <span class="menu-button-text">Send</span>
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button">
+                        <img src="arrow_down.svg" style="width: 24px; height: 24px;"/>
+                    </button>
+                    <span class="menu-button-text">Receive</span>
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button"></button>
+                    <span class="menu-button-text">...</span>
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button"></button>
+                    <span class="menu-button-text">...</span>
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button"></button>
+                    <span class="menu-button-text">...</span>
+                </div>
+            </div>
+            <div class="transactions">
+                <h1 class="transactions-heading">Transactions</h1>
+                <div class="transaction-box-container">
+                    <div class="transaction-box">
+                        <div class="transaction-box-icon"></div>
+                        <div class="transaction-box-info-container">
+                            <p class="transaction-box-info">Lorem ipsum dolor sit amet.</p>
+                            <span class="transaction-box-info">Lorem.</span>
+                        </div>
+                    </div>
+                    <div class="transaction-box">
+                        <div class="transaction-box-icon"></div>
+                        <div class="transaction-box-info-container">
+                            <p class="transaction-box-info">Lorem, ipsum dolor.</p>
+                            <span class="transaction-box-info">Lorem.</span>
+                        </div>
+                    </div>
+                    <div class="transaction-box">
+                        <div class="transaction-box-icon"></div>
+                        <div class="transaction-box-info-container">
+                            <p class="transaction-box-info">Lorem ipsum dolor sit.</p>
+                            <span class="transaction-box-info">Lorem, ipsum.</span>
+                        </div>
+                    </div>
+                    <div class="transaction-box">
+                        <div class="transaction-box-icon"></div>
+                        <div class="transaction-box-info-container">
+                            <p class="transaction-box-info">Lorem ipsum dolor sit amet consectetur.</p>
+                            <span class="transaction-box-info">Lorem.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
